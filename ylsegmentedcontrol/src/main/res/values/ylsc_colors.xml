@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_main_color">#E45140</color>
+    <color name="default_secondary_color">#99E45140</color>
+
+    <color name="default_disabled_text_color">#9A9A9A</color>
+    <color name="default_disabled_background_color">#EAEAEA</color>
+</resources>
