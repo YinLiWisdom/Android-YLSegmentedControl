@@ -6,10 +6,10 @@
     <color name="default_text_color_disabled">@color/default_disabled_text_color</color>
     <color name="default_text_color_normal">@color/default_main_color</color>
     <!-- Default border color -->
-    <color name="default_border_color">@android:color/darker_gray</color>
+    <color name="default_border_color">@color/default_main_color</color>
     <!-- Default button background colors -->
     <color name="default_background_color_checked">@color/default_main_color</color>
-    <color name="default_background_color_pressed">@color/default_main_color</color>
+    <color name="default_background_color_pressed">@color/default_secondary_color</color>
     <color name="default_background_color_disabled">@color/default_disabled_background_color</color>
     <color name="default_background_color_normal">@android:color/white</color>
 </resources>
