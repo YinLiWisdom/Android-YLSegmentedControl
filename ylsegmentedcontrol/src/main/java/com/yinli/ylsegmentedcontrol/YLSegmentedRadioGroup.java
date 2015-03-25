@@ -27,6 +27,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     private int mCheckedTextColor, mDisabledTextColor, mNormalTextColor, mPressedTextColor;
     private int mCheckedBackgroundColor, mDisabledBackgroundColor, mNormalBackgroundColor, mPressedBackgroundColor;
     private int mBorderColor;
+    private float mStrokeWidth;
 
     private Resources res;
 
@@ -64,6 +65,8 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         mPressedBackgroundColor = res.getColor(R.color.default_background_color_pressed);
 
         mBorderColor = res.getColor(R.color.default_border_color);
+
+        mStrokeWidth = res.getDimension(R.dimen.default_stroke_width);
     }
 
     private void init() {
@@ -75,23 +78,39 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         super.onFinishInflate();
         int count = getChildCount();
         if (count == 1) {
-            updateButtonAppearance(getChildAt(0), ButtonType.SINGLE);
+            updateButtonAppearance(getChildAt(0), ButtonType.SINGLE, -1);
         } else if (count > 1) {
             int orientaion = getOrientation();
             if (orientaion == LinearLayout.HORIZONTAL) {
-                updateButtonAppearance(getChildAt(0), ButtonType.LEFT);
-                updateButtonAppearance(getChildAt(count - 1), ButtonType.RIGHT);
+                updateButtonAppearance(getChildAt(0), ButtonType.LEFT, orientaion);
+                updateButtonAppearance(getChildAt(count - 1), ButtonType.RIGHT, orientaion);
             } else {
-                updateButtonAppearance(getChildAt(0), ButtonType.TOP);
-                updateButtonAppearance(getChildAt(count - 1), ButtonType.BOTTOM);
+                updateButtonAppearance(getChildAt(0), ButtonType.TOP, orientaion);
+                updateButtonAppearance(getChildAt(count - 1), ButtonType.BOTTOM, orientaion);
             }
             for (int i = 1; i < count - 1; i++) {
-                updateButtonAppearance(getChildAt(i), ButtonType.MIDDLE);
+                updateButtonAppearance(getChildAt(i), ButtonType.MIDDLE, orientaion);
             }
         }
     }
 
-    public void updateButtonAppearance(View view, ButtonType type) {
+    public void updateButtonAppearance(View view, ButtonType type, int orientation) {
+        /* Handle duplicated stroke */
+        int offset = (int)-mStrokeWidth;
+        if(orientation == LinearLayout.HORIZONTAL) {
+            if (type == ButtonType.MIDDLE || type == ButtonType.RIGHT) {
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+                params.setMargins(offset, 0, 0, 0);
+                view.setLayoutParams(params);
+            }
+        } else {
+            if (type == ButtonType.MIDDLE || type == ButtonType.BOTTOM) {
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+                params.setMargins(0, offset, 0, 0);
+                view.setLayoutParams(params);
+            }
+        }
+
         updateButtonText(view);
         updateButtonIcon(view);
         updateButtonBackground(view, type);

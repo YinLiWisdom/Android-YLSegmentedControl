@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.widget.RadioButton;
@@ -44,5 +45,12 @@ public class YLSegmentedRadioButton extends RadioButton {
         setMinHeight((int) res.getDimension(R.dimen.default_button_min_height));
         setGravity(Gravity.CENTER);
         setButtonDrawable(new ColorDrawable((Color.TRANSPARENT)));
+    }
+
+    private void resizeButtonIcon() {
+        Drawable[] drawables = getCompoundDrawables();
+        for (int i = 0; i < drawables.length; i++) {
+
+        }
     }
 }
