@@ -3,15 +3,14 @@ package com.yinli.ylsegmentedcontrol;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -91,18 +90,19 @@ public class YLSegmentedRadioGroup extends RadioGroup {
 
     public void updateButtonAppearance(View view, ButtonType type) {
         updateButtonText(view);
+        updateButtonIcon(view);
         updateButtonBackground(view, type);
-        updateIcon(view);
     }
 
-    private void updateIcon(View view) {
+    private void updateButtonIcon(View view) {
         Drawable[] drawables = ((Button) view).getCompoundDrawables();
         for (int i = 0; i < drawables.length; i++) {
             if (drawables[i] != null) {
                 drawables[i].setColorFilter(mNormalTextColor, PorterDuff.Mode.SRC_ATOP);
+                drawables[i].setBounds(60, 60, 0, 0);
             }
         }
-        ((Button) view).setCompoundDrawablesWithIntrinsicBounds(drawables[0], drawables[1], drawables[2], drawables[3]);
+        ((Button) view).setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
     }
 
     private void updateButtonText(View view) {
