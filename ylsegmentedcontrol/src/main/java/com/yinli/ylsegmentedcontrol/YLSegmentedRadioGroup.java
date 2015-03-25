@@ -3,8 +3,11 @@ package com.yinli.ylsegmentedcontrol;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.LightingColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -95,21 +98,50 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     }
 
     private void updateButtonIcon(View view) {
+        StateListDrawable stateListDrawable[] = new StateListDrawable[4];
         Drawable[] drawables = ((Button) view).getCompoundDrawables();
         for (int i = 0; i < drawables.length; i++) {
             if (drawables[i] != null) {
-                drawables[i].setColorFilter(mNormalTextColor, PorterDuff.Mode.SRC_ATOP);
-                drawables[i].setBounds(60, 60, 0, 0);
+                Bitmap bitmap = drawableToBitmap(drawables[i]);
+                stateListDrawable[i] = new StateListDrawable();
+
+                stateListDrawable[i].addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_checked}, processIconDrawable(bitmap, mNormalTextColor));
+                stateListDrawable[i].addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_enabled}, processIconDrawable(bitmap, mDisabledTextColor));
+                stateListDrawable[i].addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_checked}, processIconDrawable(bitmap, mCheckedTextColor));
+                stateListDrawable[i].addState(new int[]{android.R.attr.state_pressed}, processIconDrawable(bitmap, mPressedTextColor));
             }
         }
-        ((Button) view).setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
+        ((Button) view).setCompoundDrawablesWithIntrinsicBounds(stateListDrawable[0], stateListDrawable[1], stateListDrawable[2], stateListDrawable[3]);
+    }
+
+    private Drawable processIconDrawable(Bitmap bitmap, int color) {
+        Bitmap temp = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+
+        Canvas c = new Canvas(temp);
+        Paint p = new Paint();
+        p.setColorFilter(new LightingColorFilter(color, 1));
+        c.drawBitmap(bitmap, 0, 0, p);
+        return new BitmapDrawable(temp);
+    }
+
+    private static Bitmap drawableToBitmap (Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable)drawable).getBitmap();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 
     private void updateButtonText(View view) {
         int[][] states = new int[][]{
-                {-android.R.attr.state_checked},
-                {-android.R.attr.state_enabled},
-                {android.R.attr.state_checked},
+                {-android.R.attr.state_pressed, -android.R.attr.state_checked},
+                {-android.R.attr.state_pressed, -android.R.attr.state_enabled},
+                {-android.R.attr.state_pressed, android.R.attr.state_checked},
                 {android.R.attr.state_pressed}
         };
 
@@ -137,9 +169,9 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         checkedDrawable.setColor(mCheckedBackgroundColor);
 
         StateListDrawable stateListDrawable = new StateListDrawable();
-        stateListDrawable.addState(new int[]{-android.R.attr.state_checked}, normalDrawable);
-        stateListDrawable.addState(new int[]{-android.R.attr.state_enabled}, disabledDrawable);
-        stateListDrawable.addState(new int[]{android.R.attr.state_checked}, checkedDrawable);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_checked}, normalDrawable);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_enabled}, disabledDrawable);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_checked}, checkedDrawable);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, pressedDrawable);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {

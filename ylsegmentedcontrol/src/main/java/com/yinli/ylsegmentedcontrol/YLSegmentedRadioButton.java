@@ -1,14 +1,11 @@
 package com.yinli.ylsegmentedcontrol;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.os.Build;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RadioButton;
 
 /**
@@ -28,18 +25,6 @@ public class YLSegmentedRadioButton extends RadioButton {
         super(context, attrs, defStyleAttr);
     }
 
-    /*    public YLSegmentedRadioButton(Context context) {
-        super(context, null);
-    }
-
-    public YLSegmentedRadioButton(Context context, AttributeSet attrs) {
-        super(context, attrs, 0);
-    }
-
-    public YLSegmentedRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }*/
-
     private void init() {
 
     }
@@ -58,6 +43,6 @@ public class YLSegmentedRadioButton extends RadioButton {
         setPadding((int) horizontalPadding, (int) verticalPadding, (int) horizontalPadding, (int) verticalPadding);
         setMinHeight((int) res.getDimension(R.dimen.default_button_min_height));
         setGravity(Gravity.CENTER);
-        setButtonDrawable(null);
+        setButtonDrawable(new ColorDrawable((Color.TRANSPARENT)));
     }
 }
