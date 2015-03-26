@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="YLSegmentedRadioGroup">
+        <!-- Color of active state  -->
+        <attr name="activeColor" format="color" />
+        <!-- Color of inactive state -->
+        <attr name="inactiveColor" format="color" />
+        <!-- Border color -->
+        <attr name="borderColor" format="color" />
+        <!-- Border weight -->
+        <attr name="borderWeight" format="dimension" />
+    </declare-styleable>
 
+    <declare-styleable name="YLSegmentedImageRadioButton">
+        <!-- Icon image source -->
+        <attr name="iconImageSrc" format="reference" />
+    </declare-styleable>
 </resources>

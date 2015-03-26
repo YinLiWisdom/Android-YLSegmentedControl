@@ -2,30 +2,37 @@ package com.yinli.ylsegmentedcontrol;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.WindowManager;
 import android.widget.RadioButton;
+
+import com.yinli.ylsegmentedcontrol.utils.YLMeasureHelper;
 
 /**
  * Created by yinli on 22/03/15.
  */
 public class YLSegmentedRadioButton extends RadioButton {
 
+    private Context mContext;
     public YLSegmentedRadioButton(Context context) {
         super(context);
+        this.mContext = context;
     }
 
     public YLSegmentedRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.mContext = context;
     }
 
     public YLSegmentedRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.mContext = context;
     }
 
     private void init() {
@@ -36,12 +43,25 @@ public class YLSegmentedRadioButton extends RadioButton {
     protected void onFinishInflate() {
         super.onFinishInflate();
         updateButtonAppearance();
+        resizeButtonIcon();
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-//        resizeButtonIcon();
+
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
     }
 
     private void updateButtonAppearance() {
@@ -56,29 +76,19 @@ public class YLSegmentedRadioButton extends RadioButton {
     }
 
     private void resizeButtonIcon() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+
+        Drawable[] res = new Drawable[4];
         Drawable[] drawables = getCompoundDrawables();
+
         for (int i = 0; i < drawables.length; i++) {
             if (drawables[i] != null) {
-                float scaleFactor = (float)getHeight() / (float)drawables[i].getIntrinsicHeight();
-                drawables[i] = scaleDrawable(drawables[i], scaleFactor);
+                float scaleFactor = (float) YLMeasureHelper.getTextBounds(getTextSize(), getText().toString()).height() * 2 * metrics.scaledDensity / (float)drawables[i].getIntrinsicHeight();
+                res[i] = YLMeasureHelper.scaleDrawable(drawables[i], scaleFactor);
             }
         }
-        setCompoundDrawablesWithIntrinsicBounds(drawables[0], drawables[1], drawables[2], drawables[3]);
-    }
-
-    private Drawable scaleDrawable (Drawable drawable, float scaleFactor) {
-        if ((drawable == null) || !(drawable instanceof BitmapDrawable)) {
-            return drawable;
-        }
-
-        Bitmap b = ((BitmapDrawable)drawable).getBitmap();
-
-        int sizeX = Math.round(drawable.getIntrinsicWidth() * scaleFactor);
-        int sizeY = Math.round(drawable.getIntrinsicHeight() * scaleFactor);
-
-        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, sizeX, sizeY, false);
-
-        drawable = new BitmapDrawable(getResources(), bitmapResized);
-        return drawable;
+        setCompoundDrawablesWithIntrinsicBounds(res[0], res[1], res[2], res[3]);
     }
 }
