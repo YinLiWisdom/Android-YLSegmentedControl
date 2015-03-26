@@ -2,7 +2,9 @@ package com.yinli.ylsegmentedcontrol;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -36,6 +38,12 @@ public class YLSegmentedRadioButton extends RadioButton {
         updateButtonAppearance();
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+//        resizeButtonIcon();
+    }
+
     private void updateButtonAppearance() {
         Resources res = getResources();
 
@@ -50,7 +58,27 @@ public class YLSegmentedRadioButton extends RadioButton {
     private void resizeButtonIcon() {
         Drawable[] drawables = getCompoundDrawables();
         for (int i = 0; i < drawables.length; i++) {
-
+            if (drawables[i] != null) {
+                float scaleFactor = (float)getHeight() / (float)drawables[i].getIntrinsicHeight();
+                drawables[i] = scaleDrawable(drawables[i], scaleFactor);
+            }
         }
+        setCompoundDrawablesWithIntrinsicBounds(drawables[0], drawables[1], drawables[2], drawables[3]);
+    }
+
+    private Drawable scaleDrawable (Drawable drawable, float scaleFactor) {
+        if ((drawable == null) || !(drawable instanceof BitmapDrawable)) {
+            return drawable;
+        }
+
+        Bitmap b = ((BitmapDrawable)drawable).getBitmap();
+
+        int sizeX = Math.round(drawable.getIntrinsicWidth() * scaleFactor);
+        int sizeY = Math.round(drawable.getIntrinsicHeight() * scaleFactor);
+
+        Bitmap bitmapResized = Bitmap.createScaledBitmap(b, sizeX, sizeY, false);
+
+        drawable = new BitmapDrawable(getResources(), bitmapResized);
+        return drawable;
     }
 }

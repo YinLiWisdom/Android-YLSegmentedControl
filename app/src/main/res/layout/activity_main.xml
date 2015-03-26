@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:drawableLeft="@drawable/ic_action_refresh"
+            android:drawableLeft="@drawable/ic_action_photo"
             android:text="button1" />
 
         <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android-YLSegmentedControl.iml" filepath="$PROJECT_DIR$/Android-YLSegmentedControl.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/ylsegmentedcontrol/ylsegmentedcontrol.iml" filepath="$PROJECT_DIR$/ylsegmentedcontrol/ylsegmentedcontrol.iml" />
     </modules>
