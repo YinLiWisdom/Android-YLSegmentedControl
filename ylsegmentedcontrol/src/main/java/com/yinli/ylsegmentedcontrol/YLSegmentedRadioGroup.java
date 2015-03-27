@@ -69,14 +69,16 @@ public class YLSegmentedRadioGroup extends RadioGroup {
             mCheckedTextColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_inactiveColor, defaultCheckedTextColor);
             mDisabledTextColor = defaultDisabledTextColor;
             mNormalTextColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_activeColor, defaultNormalTextColor);
-            mPressedTextColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_inactiveColor, defaultPressedTextColor);
+            mPressedTextColor = mCheckedTextColor;
 
             mCheckedBackgroundColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_activeColor, defaultCheckedBackgroundColor);
             mDisabledBackgroundColor = defaultDisabledBackgroundColor;
-            mNormalBackgroundColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_activeColor, defaultNormalBackgroundColor);
+            mNormalBackgroundColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_inactiveColor, defaultNormalBackgroundColor);
             mPressedBackgroundColor = YLColorHelper.reduceColorOpacity(mCheckedBackgroundColor);
 
-            mBorderColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_borderColor, defaultBorderColor);
+//            mBorderColor = typedArray.getColor(R.styleable.YLSegmentedRadioGroup_borderColor, defaultBorderColor);
+
+            mBorderColor = mCheckedBackgroundColor;
 
             mStrokeWidth = typedArray.getDimension(R.styleable.YLSegmentedRadioGroup_borderWeight, defaultStrokeWidth);
         } finally {
@@ -232,6 +234,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
             drawable.setCornerRadii(new float[]{0, 0, 0, 0, radius, radius, radius, radius});
         }
 
+        drawable.setStroke((int)mStrokeWidth, mBorderColor);
         return drawable;
     }
 

@@ -21,22 +21,21 @@ public class YLSegmentedRadioButton extends RadioButton {
 
     private Context mContext;
     public YLSegmentedRadioButton(Context context) {
-        super(context);
-        this.mContext = context;
+        this(context, null);
     }
 
     public YLSegmentedRadioButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mContext = context;
+        init(context, attrs);
     }
 
     public YLSegmentedRadioButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.mContext = context;
+        init(context, attrs);
     }
 
-    private void init() {
-
+    private void init(Context context, AttributeSet attrs) {
+        this.mContext = context;
     }
 
     @Override
