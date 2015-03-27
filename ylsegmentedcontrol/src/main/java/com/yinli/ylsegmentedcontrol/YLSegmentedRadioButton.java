@@ -20,6 +20,7 @@ import com.yinli.ylsegmentedcontrol.utils.YLMeasureHelper;
 public class YLSegmentedRadioButton extends RadioButton {
 
     private Context mContext;
+    private Resources res;
     public YLSegmentedRadioButton(Context context) {
         this(context, null);
     }
@@ -36,6 +37,7 @@ public class YLSegmentedRadioButton extends RadioButton {
 
     private void init(Context context, AttributeSet attrs) {
         this.mContext = context;
+        this.res = getResources();
     }
 
     @Override
@@ -64,11 +66,15 @@ public class YLSegmentedRadioButton extends RadioButton {
     }
 
     private void updateButtonAppearance() {
-        Resources res = getResources();
-
+        /* Set paddings but will prevent zero-padding by assign a default value */
         float verticalPadding = res.getDimension(R.dimen.default_button_vertical_padding);
         float horizontalPadding = res.getDimension(R.dimen.default_button_horizontal_padding);
+        float paddingLeft = getPaddingLeft() <= 0 ? horizontalPadding : getPaddingLeft();
+        float paddingRight = getPaddingRight() <= 0 ? horizontalPadding : getPaddingRight();
+        float paddingTop = getPaddingTop() <= 0 ? verticalPadding : getPaddingTop();
+        float paddingBottom = getPaddingBottom() <= 0 ? verticalPadding : getPaddingBottom();
         setPadding((int) horizontalPadding, (int) verticalPadding, (int) horizontalPadding, (int) verticalPadding);
+
         setMinHeight((int) res.getDimension(R.dimen.default_button_min_height));
         setGravity(Gravity.CENTER);
         setButtonDrawable(new ColorDrawable((Color.TRANSPARENT)));

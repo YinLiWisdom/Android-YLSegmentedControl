@@ -9,6 +9,10 @@
         <attr name="borderColor" format="color" />
         <!-- Border weight -->
         <attr name="borderWeight" format="dimension" />
+        <!-- Round rectangle or not -->
+        <attr name="isRound" format="boolean" />
+        <!-- Radius weight -->
+        <attr name="radius" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="YLSegmentedImageRadioButton">

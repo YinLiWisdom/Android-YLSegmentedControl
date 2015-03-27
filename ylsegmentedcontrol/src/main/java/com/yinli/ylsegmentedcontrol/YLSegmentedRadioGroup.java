@@ -31,7 +31,8 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     private int mCheckedTextColor, mDisabledTextColor, mNormalTextColor, mPressedTextColor;
     private int mCheckedBackgroundColor, mDisabledBackgroundColor, mNormalBackgroundColor, mPressedBackgroundColor;
     private int mBorderColor;
-    private float mStrokeWidth;
+    private float mStrokeWidth, mRadius;
+    private boolean mIsRound;
 
     private Resources res;
 
@@ -63,6 +64,8 @@ public class YLSegmentedRadioGroup extends RadioGroup {
 
         final float defaultStrokeWidth = res.getDimension(R.dimen.default_stroke_width);
 
+        final float defaultRadius = res.getDimension(R.dimen.default_corner_radius);
+
         /* Retrieve styles attributes */
         TypedArray typedArray = res.obtainAttributes(attrs, R.styleable.YLSegmentedRadioGroup);
         try {
@@ -81,6 +84,8 @@ public class YLSegmentedRadioGroup extends RadioGroup {
             mBorderColor = mCheckedBackgroundColor;
 
             mStrokeWidth = typedArray.getDimension(R.styleable.YLSegmentedRadioGroup_borderWeight, defaultStrokeWidth);
+            mRadius = typedArray.getDimension(R.styleable.YLSegmentedRadioGroup_radius, defaultRadius);
+            mIsRound = typedArray.getBoolean(R.styleable.YLSegmentedRadioGroup_isRound, true);
         } finally {
             typedArray.recycle();
         }
@@ -129,9 +134,26 @@ public class YLSegmentedRadioGroup extends RadioGroup {
             }
         }
 
-        updateButtonText(view);
-        updateButtonIcon(view);
-        updateButtonBackground(view, type);
+        if (view instanceof YLSegmentedImageRadioButton) {
+            updateImageButtonIcon(view);
+            updateButtonBackground(view, type);
+        } else if (view instanceof YLSegmentedRadioButton) {
+            updateButtonText(view);
+            updateButtonIcon(view);
+            updateButtonBackground(view, type);
+        }
+    }
+
+    private void updateImageButtonIcon(View view) {
+        Drawable drawable = ((YLSegmentedImageRadioButton)view).getIconDrawable();
+        Bitmap bitmap = drawableToBitmap(drawable);
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_checked}, processIconDrawable(bitmap, mNormalTextColor));
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_enabled}, processIconDrawable(bitmap, mDisabledTextColor));
+        stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_checked}, processIconDrawable(bitmap, mCheckedTextColor));
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, processIconDrawable(bitmap, mPressedTextColor));
+
+        ((YLSegmentedImageRadioButton)view).setIconDrawable(stateListDrawable);
     }
 
     private void updateButtonIcon(View view) {
@@ -219,22 +241,21 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     }
 
     private GradientDrawable createDrawable(ButtonType type) {
-
-        float radius = res.getDimension(R.dimen.default_corner_radius);
         GradientDrawable drawable = (GradientDrawable) res.getDrawable(R.drawable.button_background).mutate();
-        if (type == ButtonType.LEFT) {
-            drawable.setCornerRadii(new float[]{radius, radius, 0, 0, 0, 0, radius, radius});
-        } else if (type == ButtonType.RIGHT) {
-            drawable.setCornerRadii(new float[]{0, 0, radius, radius, radius, radius, 0, 0});
-        } else if (type == ButtonType.SINGLE) {
-            drawable.setCornerRadii(new float[]{radius, radius, radius, radius, radius, radius, radius, radius});
-        } else if (type == ButtonType.TOP) {
-            drawable.setCornerRadii(new float[]{radius, radius, radius, radius, 0, 0, 0, 0});
-        } else if (type == ButtonType.BOTTOM) {
-            drawable.setCornerRadii(new float[]{0, 0, 0, 0, radius, radius, radius, radius});
+        if (mIsRound) {
+            if (type == ButtonType.LEFT) {
+                drawable.setCornerRadii(new float[]{mRadius, mRadius, 0, 0, 0, 0, mRadius, mRadius});
+            } else if (type == ButtonType.RIGHT) {
+                drawable.setCornerRadii(new float[]{0, 0, mRadius, mRadius, mRadius, mRadius, 0, 0});
+            } else if (type == ButtonType.SINGLE) {
+                drawable.setCornerRadii(new float[]{mRadius, mRadius, mRadius, mRadius, mRadius, mRadius, mRadius, mRadius});
+            } else if (type == ButtonType.TOP) {
+                drawable.setCornerRadii(new float[]{mRadius, mRadius, mRadius, mRadius, 0, 0, 0, 0});
+            } else if (type == ButtonType.BOTTOM) {
+                drawable.setCornerRadii(new float[]{0, 0, 0, 0, mRadius, mRadius, mRadius, mRadius});
+            }
+            drawable.setStroke((int) mStrokeWidth, mBorderColor);
         }
-
-        drawable.setStroke((int)mStrokeWidth, mBorderColor);
         return drawable;
     }
 

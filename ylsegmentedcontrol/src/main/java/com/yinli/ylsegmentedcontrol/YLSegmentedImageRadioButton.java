@@ -14,7 +14,7 @@ import android.widget.RadioButton;
 /**
  * Created by Yin Li on 26/03/15.
  */
-public class YLSegmentedImageRadioButton extends RadioButton{
+public class YLSegmentedImageRadioButton extends RadioButton {
 
     private Resources res;
     private Drawable mIconDrawable;
@@ -46,15 +46,31 @@ public class YLSegmentedImageRadioButton extends RadioButton{
         res = getResources();
 
         /* Retrieve styles attributes */
-        TypedArray typedArray = res.obtainAttributes(attrs, R.styleable.YLSegmentedRadioGroup);
+        TypedArray typedArray = res.obtainAttributes(attrs, R.styleable.YLSegmentedImageRadioButton);
         try {
-            int iconSrcId = typedArray.getInt(R.styleable.YLSegmentedImageRadioButton_iconImageSrc, -1);
-            if (iconSrcId == -1) {
+            mIconDrawable = typedArray.getDrawable(R.styleable.YLSegmentedImageRadioButton_iconImageSrc);
+            if (mIconDrawable == null) {
                 throw new IllegalArgumentException("iconImageSrc must be set");
             }
-            mIconDrawable = res.getDrawable(iconSrcId);
         } finally {
             typedArray.recycle();
+        }
+    }
+
+    @Override
+    protected int[] onCreateDrawableState(int extraSpace) {
+        return super.onCreateDrawableState(extraSpace);
+    }
+
+    @Override
+    protected void drawableStateChanged() {
+        super.drawableStateChanged();
+
+        if (mIconDrawable != null) {
+            int[] myDrawableState = getDrawableState();
+            // Set the state of the Drawable
+            mIconDrawable.setState(myDrawableState);
+            invalidate();
         }
     }
 
@@ -68,16 +84,35 @@ public class YLSegmentedImageRadioButton extends RadioButton{
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = getMeasuredWidth();
-        int height = getMeasuredHeight();
+        if (mIconDrawable != null) {
+            int width = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
+            int height = getMeasuredHeight() - getPaddingTop() - getPaddingBottom();
+            int drawableWidth = mIconDrawable.getIntrinsicWidth();
+            int drawableHeight = mIconDrawable.getIntrinsicHeight();
+            float scaleRatio = 1;
+            if (drawableWidth > width || drawableHeight > height) {
+                scaleRatio = Math.min((float) width / (float) drawableWidth, (float) height / (float) drawableHeight);
+            }
 
-
+            int left = (int) ((width - drawableWidth * scaleRatio) / 2.0f) + getPaddingLeft();
+            int top = (int) ((height - drawableHeight * scaleRatio) / 2.0f) + getPaddingTop();
+            int right = left + (int)(drawableWidth * scaleRatio);
+            int bottom = top + (int)(drawableHeight * scaleRatio);
+            mIconDrawable.setBounds(left, top, right, bottom);
+            mIconDrawable.draw(canvas);
+        }
     }
 
     private void updateButtonAppearance() {
+        /* Set paddings but will prevent zero-padding by assign a default value */
         float verticalPadding = res.getDimension(R.dimen.default_button_vertical_padding);
         float horizontalPadding = res.getDimension(R.dimen.default_button_horizontal_padding);
+        float paddingLeft = getPaddingLeft() <= 0 ? horizontalPadding : getPaddingLeft();
+        float paddingRight = getPaddingRight() <= 0 ? horizontalPadding : getPaddingRight();
+        float paddingTop = getPaddingTop() <= 0 ? verticalPadding : getPaddingTop();
+        float paddingBottom = getPaddingBottom() <= 0 ? verticalPadding : getPaddingBottom();
         setPadding((int) horizontalPadding, (int) verticalPadding, (int) horizontalPadding, (int) verticalPadding);
+
         setMinHeight((int) res.getDimension(R.dimen.default_button_min_height));
         setGravity(Gravity.CENTER);
         setButtonDrawable(new ColorDrawable((Color.TRANSPARENT)));
