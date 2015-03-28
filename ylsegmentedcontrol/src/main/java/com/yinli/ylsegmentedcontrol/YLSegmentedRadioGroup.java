@@ -40,6 +40,48 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         LEFT, TOP, MIDDLE, RIGHT, BOTTOM, SINGLE
     }
 
+    public float getStrokeWidth() {
+        return mStrokeWidth;
+    }
+
+    public void setStrokeWidth(float strokeWidth) {
+        this.mStrokeWidth = strokeWidth;
+        invalidate();
+    }
+
+    public float getRadius() {
+        return mRadius;
+    }
+
+    public void setRadius(float radius) {
+        this.mRadius = radius;
+        invalidate();
+    }
+
+    public boolean isIsRound() {
+        return mIsRound;
+    }
+
+    public void setIsRound(boolean isRound) {
+        this.mIsRound = isRound;
+        invalidate();
+    }
+
+    public void setActiveColor(int color) {
+        mNormalTextColor = color;
+        mCheckedBackgroundColor = color;
+        mPressedBackgroundColor = YLColorHelper.reduceColorOpacity(mCheckedBackgroundColor);
+        mBorderColor = color;
+        invalidate();
+    }
+
+    public void setInactiveColor(int color) {
+        mCheckedTextColor = color;
+        mPressedTextColor = color;
+        mNormalBackgroundColor = color;
+        invalidate();
+    }
+
     public YLSegmentedRadioGroup(Context context) {
         this(context, null);
     }

@@ -1,0 +1,94 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Sample2Fragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableTop="@drawable/ic_action_star"
+                android:text="Star" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_action_search"
+                android:text="Search" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_action_photo"
+                android:text="Camera" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_action_paste"
+                android:text="File" />
+
+        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            custom:inactiveColor="#36CD51">
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
+                android:id="@+id/vButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                custom:iconImageSrc="@drawable/ic_action_star" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
+                android:id="@+id/vButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:iconImageSrc="@drawable/ic_action_search" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
+                android:id="@+id/vButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:iconImageSrc="@drawable/ic_action_photo" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
+                android:id="@+id/vButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                custom:iconImageSrc="@drawable/ic_action_paste" />
+
+        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
+    </LinearLayout>
+</ScrollView>
+

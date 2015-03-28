@@ -1,176 +1,32 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="30dp"
+        android:background="@android:color/background_dark"
+        android:gravity="center|right">
 
-        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            custom:isRound="false"
-            android:weightSum="3">
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/hButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:drawableLeft="@drawable/ic_action_photo"
-                android:text="button 1" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/hButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_action_star"
-                android:text="button 2" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/hButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_action_search"
-                android:text="button 3" />
-
-        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-
-        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3"
-            custom:radius="10dp"
-            custom:activeColor="#E45140"
-            custom:inactiveColor="#FFFFFF">
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/hButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:checked="true"
-                android:drawableTop="@drawable/ic_action_photo"
-                android:text="button 1" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/hButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_action_star"
-                android:text="button 2" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/hButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/ic_action_search"
-                android:text="button 3" />
-
-        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-
-        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
-                android:id="@+id/hButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:layout_weight="1"
-                android:checked="true"
-                custom:iconImageSrc="@drawable/ic_action_photo" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
-                android:id="@+id/hButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:layout_weight="1"
-                custom:iconImageSrc="@drawable/ic_action_star" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
-                android:id="@+id/hButton9"
-                android:layout_width="wrap_content"
-                android:layout_height="46dp"
-                android:layout_weight="1"
-                custom:iconImageSrc="@drawable/ic_action_search" />
-
-        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/darker_gray" />
-
-        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            custom:inactiveColor="#FFBD41">
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:drawableTop="@drawable/ic_action_star"
-                android:padding="50dp"
-                android:text="button1" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_action_search"
-                android:text="button2" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_action_photo"
-                android:text="button3" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_action_paste"
-                android:text="button4" />
-
-        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginRight="15dp"
+            android:text="@string/powered_tag_text"/>
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

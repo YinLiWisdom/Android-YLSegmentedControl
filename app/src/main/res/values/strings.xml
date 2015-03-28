@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">YinLi-YLSegmentedControl</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_more">More</string>
+    <string name="powered_tag_text">Powered by Yin Li</string>
+
+    <string name="sample1_title">Sample 1</string>
+    <string name="sample2_title">Sample 2</string>
 </resources>

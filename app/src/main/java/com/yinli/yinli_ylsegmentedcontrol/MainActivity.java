@@ -1,5 +1,7 @@
 package com.yinli.yinli_ylsegmentedcontrol;
 
+import android.net.Uri;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,8 +14,16 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
+        if (findViewById(R.id.fragmentContainer) != null) {
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            Sample1Fragment fragment = new Sample1Fragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, fragment).commit();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -29,8 +39,18 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.sample1) {
+            Sample1Fragment fragment = new Sample1Fragment();
+            transaction.replace(R.id.fragmentContainer, fragment);
+            transaction.commit();
+            return true;
+        }
+        if (id == R.id.sample2) {
+            Sample2Fragment fragment = new Sample2Fragment();
+            transaction.replace(R.id.fragmentContainer, fragment);
+            transaction.commit();
             return true;
         }
 
