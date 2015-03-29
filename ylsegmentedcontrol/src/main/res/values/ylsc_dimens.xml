@@ -3,8 +3,10 @@
     <dimen name="default_corner_radius">5dp</dimen>
     <dimen name="default_stroke_width">1dp</dimen>
     <dimen name="default_button_min_height">35dp</dimen>
-    <dimen name="default_button_vertical_padding">8dp</dimen>
-    <dimen name="default_button_horizontal_padding">10dp</dimen>
+    <dimen name="default_radio_button_vertical_padding">8dp</dimen>
+    <dimen name="default_radio_button_horizontal_padding">10dp</dimen>
+    <dimen name="default_image_radio_button_vertical_padding">10dp</dimen>
+    <dimen name="default_image_radio_button_horizontal_padding">15dp</dimen>
     <dimen name="default_button_horizontal_margin">8dp</dimen>
     <dimen name="default_button_vertical_margin">5dp</dimen>
 

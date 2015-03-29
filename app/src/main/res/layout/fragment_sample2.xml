@@ -13,40 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_gravity="center">
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
                 android:id="@+id/vButton1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:drawableTop="@drawable/ic_action_star"
                 android:text="Star" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
                 android:id="@+id/vButton2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_action_search"
                 android:text="Search" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
                 android:id="@+id/vButton3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_action_photo"
                 android:text="Camera" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_action_paste"
-                android:text="File" />
 
         </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
 
@@ -58,35 +47,66 @@
             android:background="@android:color/darker_gray" />
 
         <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            custom:inactiveColor="#36CD51">
+            custom:activeColor="#E45140"
+            android:layout_gravity="center">
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:drawableRight="@drawable/ic_action_star"
+                android:text="Star" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_action_search"
+                android:text="Search" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/vButton11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_action_photo"
+                android:text="Camera" />
+
+        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray" />
+
+        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            custom:activeColor="#36CD51">
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
                 android:id="@+id/vButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:checked="true"
-                custom:iconImageSrc="@drawable/ic_action_star" />
+                custom:iconImageSrc="@drawable/facebook" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
                 android:id="@+id/vButton6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                custom:iconImageSrc="@drawable/ic_action_search" />
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                custom:iconImageSrc="@drawable/twitter" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
                 android:id="@+id/vButton7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                custom:iconImageSrc="@drawable/ic_action_photo" />
-
-            <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
-                android:id="@+id/vButton8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                custom:iconImageSrc="@drawable/ic_action_paste" />
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                custom:iconImageSrc="@drawable/youtube" />
 
         </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
     </LinearLayout>

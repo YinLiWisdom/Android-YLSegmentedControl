@@ -67,8 +67,8 @@ public class YLSegmentedRadioButton extends RadioButton {
 
     private void updateButtonAppearance() {
         /* Set paddings but will prevent zero-padding by assign a default value */
-        float verticalPadding = res.getDimension(R.dimen.default_button_vertical_padding);
-        float horizontalPadding = res.getDimension(R.dimen.default_button_horizontal_padding);
+        float verticalPadding = res.getDimension(R.dimen.default_radio_button_vertical_padding);
+        float horizontalPadding = res.getDimension(R.dimen.default_radio_button_horizontal_padding);
         float paddingLeft = getPaddingLeft() <= 0 ? horizontalPadding : getPaddingLeft();
         float paddingRight = getPaddingRight() <= 0 ? horizontalPadding : getPaddingRight();
         float paddingTop = getPaddingTop() <= 0 ? verticalPadding : getPaddingTop();
@@ -85,15 +85,15 @@ public class YLSegmentedRadioButton extends RadioButton {
         WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(metrics);
 
-        Drawable[] res = new Drawable[4];
+        Drawable[] results = new Drawable[4];
         Drawable[] drawables = getCompoundDrawables();
 
         for (int i = 0; i < drawables.length; i++) {
             if (drawables[i] != null) {
-                float scaleFactor = (float) YLMeasureHelper.getTextBounds(getTextSize(), getText().toString()).height() * 2 * metrics.scaledDensity / (float)drawables[i].getIntrinsicHeight();
-                res[i] = YLMeasureHelper.scaleDrawable(drawables[i], scaleFactor);
+                float scaleFactor = (float) YLMeasureHelper.getTextBounds(getTextSize(), getText().toString()).height() * metrics.scaledDensity / (float)drawables[i].getIntrinsicHeight();
+                results[i] = YLMeasureHelper.scaleDrawable(res, drawables[i], scaleFactor);
             }
         }
-        setCompoundDrawablesWithIntrinsicBounds(res[0], res[1], res[2], res[3]);
+        setCompoundDrawablesWithIntrinsicBounds(results[0], results[1], results[2], results[3]);
     }
 }

@@ -1,5 +1,6 @@
 package com.yinli.ylsegmentedcontrol.utils;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -11,7 +12,7 @@ import android.graphics.drawable.Drawable;
  */
 public class YLMeasureHelper {
 
-    public static Drawable scaleDrawable (Drawable drawable, float scaleFactor) {
+    public static Drawable scaleDrawable (Resources resources, Drawable drawable, float scaleFactor) {
         if ((drawable == null) || !(drawable instanceof BitmapDrawable)) {
             return drawable;
         }
@@ -27,7 +28,7 @@ public class YLMeasureHelper {
 
         Bitmap bitmapResized = Bitmap.createScaledBitmap(b, sizeX, sizeY, false);
 
-        return new BitmapDrawable(bitmapResized);
+        return new BitmapDrawable(resources, bitmapResized);
     }
 
     public static Rect getTextBounds(float textSize, String text) {

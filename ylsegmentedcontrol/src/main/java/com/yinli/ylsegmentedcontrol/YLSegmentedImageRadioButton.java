@@ -96,8 +96,8 @@ public class YLSegmentedImageRadioButton extends RadioButton {
 
             int left = (int) ((width - drawableWidth * scaleRatio) / 2.0f) + getPaddingLeft();
             int top = (int) ((height - drawableHeight * scaleRatio) / 2.0f) + getPaddingTop();
-            int right = left + (int)(drawableWidth * scaleRatio);
-            int bottom = top + (int)(drawableHeight * scaleRatio);
+            int right = left + (int) (drawableWidth * scaleRatio);
+            int bottom = top + (int) (drawableHeight * scaleRatio);
             mIconDrawable.setBounds(left, top, right, bottom);
             mIconDrawable.draw(canvas);
         }
@@ -105,8 +105,8 @@ public class YLSegmentedImageRadioButton extends RadioButton {
 
     private void updateButtonAppearance() {
         /* Set paddings but will prevent zero-padding by assign a default value */
-        float verticalPadding = res.getDimension(R.dimen.default_button_vertical_padding);
-        float horizontalPadding = res.getDimension(R.dimen.default_button_horizontal_padding);
+        float verticalPadding = res.getDimension(R.dimen.default_image_radio_button_vertical_padding);
+        float horizontalPadding = res.getDimension(R.dimen.default_image_radio_button_horizontal_padding);
         float paddingLeft = getPaddingLeft() <= 0 ? horizontalPadding : getPaddingLeft();
         float paddingRight = getPaddingRight() <= 0 ? horizontalPadding : getPaddingRight();
         float paddingTop = getPaddingTop() <= 0 ? verticalPadding : getPaddingTop();

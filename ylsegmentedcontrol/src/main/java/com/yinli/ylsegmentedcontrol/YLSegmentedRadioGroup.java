@@ -15,7 +15,9 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -141,39 +143,40 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        setGravity(Gravity.CENTER_VERTICAL);
         int count = getChildCount();
         if (count == 1) {
             updateButtonAppearance(getChildAt(0), ButtonType.SINGLE, -1);
         } else if (count > 1) {
-            int orientaion = getOrientation();
-            if (orientaion == LinearLayout.HORIZONTAL) {
-                updateButtonAppearance(getChildAt(0), ButtonType.LEFT, orientaion);
-                updateButtonAppearance(getChildAt(count - 1), ButtonType.RIGHT, orientaion);
+            int orientation = getOrientation();
+            if (orientation == LinearLayout.HORIZONTAL) {
+                updateButtonAppearance(getChildAt(0), ButtonType.LEFT, orientation);
+                updateButtonAppearance(getChildAt(count - 1), ButtonType.RIGHT, orientation);
             } else {
-                updateButtonAppearance(getChildAt(0), ButtonType.TOP, orientaion);
-                updateButtonAppearance(getChildAt(count - 1), ButtonType.BOTTOM, orientaion);
+                updateButtonAppearance(getChildAt(0), ButtonType.TOP, orientation);
+                updateButtonAppearance(getChildAt(count - 1), ButtonType.BOTTOM, orientation);
             }
             for (int i = 1; i < count - 1; i++) {
-                updateButtonAppearance(getChildAt(i), ButtonType.MIDDLE, orientaion);
+                updateButtonAppearance(getChildAt(i), ButtonType.MIDDLE, orientation);
             }
         }
     }
 
     public void updateButtonAppearance(View view, ButtonType type, int orientation) {
         /* Handle duplicated stroke */
-        int offset = (int)-mStrokeWidth;
-        if(orientation == LinearLayout.HORIZONTAL) {
+        int offset = (int) -mStrokeWidth;
+        if (orientation == LinearLayout.HORIZONTAL) {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
             if (type == ButtonType.MIDDLE || type == ButtonType.RIGHT) {
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
                 params.setMargins(offset, 0, 0, 0);
-                view.setLayoutParams(params);
             }
+            view.setLayoutParams(params);
         } else {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
             if (type == ButtonType.MIDDLE || type == ButtonType.BOTTOM) {
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
                 params.setMargins(0, offset, 0, 0);
-                view.setLayoutParams(params);
             }
+            view.setLayoutParams(params);
         }
 
         if (view instanceof YLSegmentedImageRadioButton) {
@@ -187,7 +190,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     }
 
     private void updateImageButtonIcon(View view) {
-        Drawable drawable = ((YLSegmentedImageRadioButton)view).getIconDrawable();
+        Drawable drawable = ((YLSegmentedImageRadioButton) view).getIconDrawable();
         Bitmap bitmap = drawableToBitmap(drawable);
         StateListDrawable stateListDrawable = new StateListDrawable();
         stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, -android.R.attr.state_checked}, processIconDrawable(bitmap, mNormalTextColor));
@@ -195,7 +198,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         stateListDrawable.addState(new int[]{-android.R.attr.state_pressed, android.R.attr.state_checked}, processIconDrawable(bitmap, mCheckedTextColor));
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, processIconDrawable(bitmap, mPressedTextColor));
 
-        ((YLSegmentedImageRadioButton)view).setIconDrawable(stateListDrawable);
+        ((YLSegmentedImageRadioButton) view).setIconDrawable(stateListDrawable);
     }
 
     private void updateButtonIcon(View view) {
@@ -222,12 +225,12 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         Paint p = new Paint();
         p.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
         c.drawBitmap(bitmap, 0, 0, p);
-        return new BitmapDrawable(temp);
+        return new BitmapDrawable(res, temp);
     }
 
-    private static Bitmap drawableToBitmap (Drawable drawable) {
+    private static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable)drawable).getBitmap();
+            return ((BitmapDrawable) drawable).getBitmap();
         }
 
         Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
@@ -301,4 +304,20 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         return drawable;
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+/*        int balancedHeight = getMeasuredHeight();
+        int balancedWidth = getMeasuredWidth();
+        int count = getChildCount();
+        int orientation = getOrientation();
+        for (int i = 0; i < count; i++) {
+            if (orientation == LinearLayout.HORIZONTAL) {
+                getChildAt(i).getLayoutParams().height = balancedHeight;
+            } else {
+                getChildAt(i).getLayoutParams().width = balancedWidth;
+            }
+
+        }*/
+    }
 }
