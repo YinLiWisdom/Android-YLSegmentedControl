@@ -14,25 +14,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
+            android:id="@+id/radioGroup1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton1"
+                android:id="@+id/star"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="Star" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton2"
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Search" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
-                android:id="@+id/vButton3"
+                android:id="@+id/camera"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Camera" />

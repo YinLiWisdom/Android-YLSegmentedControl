@@ -4,6 +4,6 @@
     <string name="action_more">More</string>
     <string name="powered_tag_text">Powered by Yin Li</string>
 
-    <string name="sample1_title">Sample 1</string>
-    <string name="sample2_title">Sample 2</string>
+    <string name="sample1_title">Horizontal Samples</string>
+    <string name="sample2_title">Vertical Samples</string>
 </resources>

@@ -48,7 +48,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
 
     public void setStrokeWidth(float strokeWidth) {
         this.mStrokeWidth = strokeWidth;
-        invalidate();
+        updateGroup();
     }
 
     public float getRadius() {
@@ -57,7 +57,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
 
     public void setRadius(float radius) {
         this.mRadius = radius;
-        invalidate();
+        updateGroup();
     }
 
     public boolean isIsRound() {
@@ -66,7 +66,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
 
     public void setIsRound(boolean isRound) {
         this.mIsRound = isRound;
-        invalidate();
+        updateGroup();
     }
 
     public void setActiveColor(int color) {
@@ -74,14 +74,14 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         mCheckedBackgroundColor = color;
         mPressedBackgroundColor = YLColorHelper.reduceColorOpacity(mCheckedBackgroundColor);
         mBorderColor = color;
-        invalidate();
+        updateGroup();
     }
 
     public void setInactiveColor(int color) {
         mCheckedTextColor = color;
         mPressedTextColor = color;
         mNormalBackgroundColor = color;
-        invalidate();
+        updateGroup();
     }
 
     public YLSegmentedRadioGroup(Context context) {
@@ -143,7 +143,10 @@ public class YLSegmentedRadioGroup extends RadioGroup {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        setGravity(Gravity.CENTER_VERTICAL);
+        updateGroup();
+    }
+
+    public void updateGroup() {
         int count = getChildCount();
         if (count == 1) {
             updateButtonAppearance(getChildAt(0), ButtonType.SINGLE, -1);
@@ -162,7 +165,7 @@ public class YLSegmentedRadioGroup extends RadioGroup {
         }
     }
 
-    public void updateButtonAppearance(View view, ButtonType type, int orientation) {
+    private void updateButtonAppearance(View view, ButtonType type, int orientation) {
         /* Handle duplicated stroke */
         int offset = (int) -mStrokeWidth;
         if (orientation == LinearLayout.HORIZONTAL) {

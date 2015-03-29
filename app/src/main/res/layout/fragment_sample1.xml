@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
+            android:id="@+id/radioGroup1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -189,7 +190,7 @@
             <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
                 android:id="@+id/hButton14"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="46dp"
                 android:layout_weight="1"
                 android:checked="true"
                 custom:iconImageSrc="@drawable/facebook" />
@@ -197,14 +198,14 @@
             <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
                 android:id="@+id/hButton15"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="46dp"
                 android:layout_weight="1"
                 custom:iconImageSrc="@drawable/twitter" />
 
             <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
                 android:id="@+id/hButton16"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="46dp"
                 android:layout_weight="1"
                 custom:iconImageSrc="@drawable/youtube" />
 
@@ -218,7 +219,7 @@
             android:background="@android:color/darker_gray" />
 
         <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/radioGroup2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

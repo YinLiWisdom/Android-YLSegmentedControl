@@ -43,14 +43,12 @@ public class YLSegmentedRadioButton extends RadioButton {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        updateButtonAppearance();
-        resizeButtonIcon();
+        updateButton();
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-
     }
 
     @Override
@@ -63,6 +61,11 @@ public class YLSegmentedRadioButton extends RadioButton {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+    }
+
+    public void updateButton() {
+        updateButtonAppearance();
+        resizeButtonIcon();
     }
 
     private void updateButtonAppearance() {
