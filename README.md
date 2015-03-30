@@ -3,7 +3,7 @@ A smart custom iOS-like segmented control for Android, which has a magical capab
 
 * Support any color and size image (with transparent background) as an icon. The library will automatically control the size and replace the color for the icon image to match different styles. 
 * Support various states such as "pressed", "checked", "unchecked" and "disabled".
-* Support all types - text-only, image-only, and with both text and image.
+* Support all types - text-only, image-only, and text with image.
 * Support both horizontal and vertical modes.
 * Easy to customize basic styles like active color, inactive color, length of radius, square or round, border color, etc.
 
