@@ -16,7 +16,7 @@ A smart custom iOS-like segmented control for Android, which has the capability 
 
 # Sample Project
 This library comes with a demo project for you. You can download the latest demo APK from this link:
-https://github.com/YinLiWisdom/Android-YLSegmentedControl/blob/master/APK/demo.apk
+https://github.com/YinLiWisdom/Android-YLSegmentedControl/blob/master/apk/demo.apk
 
 It's also on Google Play:
 
