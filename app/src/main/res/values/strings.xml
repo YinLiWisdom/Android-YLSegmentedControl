@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YinLi-YLSegmentedControl</string>
+    <string name="app_name">YLSegmentedControl Demo</string>
 
     <string name="action_more">More</string>
     <string name="powered_tag_text">Powered by Yin Li</string>
