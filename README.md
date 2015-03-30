@@ -1,10 +1,11 @@
 # Android-YLSegmentedControl
-A smart custom iOS-like segmented control for Android, which has the capability to automatically handle segment frame and content appearances. The capability includes to calculate and set frame background and border colors for different states, to scale icon image size according to text size or frame size, and to filter and replace original color of icon image to match different background colors. Additionally, this segmented control supports all text-only, image-only and both text and image types, and it also supports both horizontal and vertical orientations. 
-<ul>
-<li>test</li>
-<li>test</li>
-<li>test</li>
-</ul>
+A smart custom iOS-like segmented control for Android, which has the capability to automatically handle frame and content appearances. 
+
+* Supports any color and size image with transparent background to make it as segment's icon. The library will automatically control the size and replace the color for you to match "activeColor" and "inactiveColor" you have set. 
+* Supports different states of segment such as "pressed", "checked", "unchecked" and "disabled".
+* Supports all text-only, image-only, and both text and image types of segments.
+* Supports both horizontal and vertical modes.
+* Easy to change basic styles like active color, inactive color, length of radius, round or square, border color, etc.
 
 #Screenshots
 <br/>
@@ -28,8 +29,7 @@ Having the demo project installed is a good way to be notified of new releases.
 
 # Useage
 
-Developed By
-============
+# Developed By
 * Yin Li - <li.yinmax@outlook.com>
 
 # License
