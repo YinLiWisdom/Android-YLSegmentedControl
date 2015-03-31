@@ -14,7 +14,7 @@ A smart custom iOS-like segmented control for Android, which has a magical capab
 <img src="./Screenshots/vertical_samples.png" width="350" />
 </p>
 
-# Sample Project
+# Demo Project
 This library comes with a demo project for you. You can download the latest demo APK from this link:
 https://github.com/YinLiWisdom/Android-YLSegmentedControl/blob/master/apk/demo.apk
 
