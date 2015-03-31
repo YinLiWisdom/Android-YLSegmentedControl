@@ -1,7 +1,7 @@
 # YLSegmentedControl
 A smart custom iOS-like segmented control for Android, which has a magical capability to handle the frame and content appearances automatically. 
 
-* Support any color and size image (with transparent background) as an icon. The library will automatically scale the size and replace the color for the icon image in order to match different styles. 
+* Support any color and size image (with transparent background) as an icon. The library will automatically scale the size and replace the color for the icon image to match different styles. 
 * Support various states such as "pressed", "checked", "unchecked" and "disabled".
 * Support all types - text-only, image-only, and text with image.
 * Support both horizontal and vertical modes.
