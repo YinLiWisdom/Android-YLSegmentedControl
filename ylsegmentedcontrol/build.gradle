@@ -1,9 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
 
+version = "1.0.0"
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
+    resourcePrefix "ylsegmentedcontrol_"
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 21
@@ -21,4 +24,89 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+}
+
+def siteUrl = 'https://github.com/YinLiWisdom/Android-YLSegmentedControl'      // Homepage URL of the library
+def gitUrl = 'https://github.com/YinLiWisdom/Android-YLSegmentedControl.git'   // Git repository URL
+group = "com.yinli"                                        // Maven Group ID for the artifact
+
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name 'A smart custom iOS-like segmented control for Android'
+                description 'A smart custom iOS-like segmented control for Android, which has a magical capability to handle the frame and content appearances automatically.\n' +
+                        '\n' +
+                        'Support any color and size image (with transparent background) as an icon. The library will automatically scale the size and replace the color for the icon image to match different styles.\n' +
+                        'Support various states such as "pressed", "checked", "unchecked" and "disabled".\n' +
+                        'Support all types - text-only, image-only, and text with image.\n' +
+                        'Support both horizontal and vertical modes.\n' +
+                        'Easy to customize basic styles like active color, inactive color, length of radius, square or round, border color, etc.'
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'The MIT License (MIT)'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'yinliwisdom'
+                        name 'Yin Li'
+                        email 'li.yinmax@outlook.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "Android-YLSegmentedControl"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["MIT"]
+        publish = true
+    }
 }
