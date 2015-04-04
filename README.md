@@ -28,6 +28,93 @@ It's also on Google Play:
 Having the demo project installed is a good way to be notified of new releases.
 
 # Useage
+### Step 1
+#### Gradle (jCenter)
+```
+dependencies {
+    compile "com.yinli:ylsegmentedcontrol:1.0.0"
+}
+```
+#### Maven
+```
+<dependency>
+	<groupId>com.yinli</groupId>
+	<artifactId>ylsegmentedcontrol</artifactId>
+	<version>1.0.0</version>
+</dependency>
+```
+
+### Step 2
+1. Add `YLSegmentedControl` into your project. 
+  * The following code snippet will give you a horizontal 3-button segmented control.
+
+    <p><img src="./Screenshots/snippet_1.png" width="400"/></p>
+    ```xml
+        <com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Button 1" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Button 2" />
+
+            <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Button 3" />
+
+        </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
+    ```
+    Simply change orientation by setting `android:orientation=""` to `horizontal` or `vertical`.
+  
+  * Text with image segmented button
+    ```
+      <com.yinli.ylsegmentedcontrol.YLSegmentedRadioButton
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_action_star"
+                android:text="Star" />
+    ```
+    The icon image will be placed on the left hand side by using above snippet, but it also supports "right", "top", and     "bottom" icons.
+    <p><img src="./Screenshots/snippet_2.png" width="400"/></p>
+  
+  * Image-only segmented button
+    ```
+      <com.yinli.ylsegmentedcontrol.YLSegmentedImageRadioButton
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="46dp"
+                android:layout_weight="1"
+                custom:iconImageSrc="@drawable/ic_action_star" />
+    ```
+    <p><img src="./Screenshots/snippet_4.png" width="400"/></p>
+    
+2. Customize styles
+  * `activeColor`
+  * `inactiveColor`
+  * `borderColor`
+  * `borderWeight`
+  * `isRound`
+  * `radius`
+  
+You can find more details from the demo project.
 
 # Developed By
 * Yin Li - <li.yinmax@outlook.com>
