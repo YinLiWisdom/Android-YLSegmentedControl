@@ -1,11 +1,11 @@
 # YLSegmentedControl
-A smart custom iOS-like segmented control for Android, which has a remarkable capability to handle both frame and content appearances automatically. 
+A smart custom iOS-like segmented control for Android, which has a remarkable capability to handle appearances for both frame and content automatically. 
 
 * Support any color and size image (with transparent background) as an icon. The library will automatically scale the size and replace the color for the icon image to match different styles. 
 * Support various states such as "pressed", "checked", "unchecked" and "disabled".
 * Support all types - text-only, image-only, and text with image.
 * Support both horizontal and vertical modes.
-* Easy to customize basic styles like active color, inactive color, length of radius, square or round, border color, etc.
+* Easy to customize styles like active color, inactive color, length of radius, square or round, border color, etc.
 
 #Screenshots
 <br/>
@@ -80,7 +80,7 @@ dependencies {
 
         </com.yinli.ylsegmentedcontrol.YLSegmentedRadioGroup>
     ```
-    Simply change orientation by setting `android:orientation=""` to `horizontal` or `vertical`.
+    It allows to change orientation by simply setting `android:orientation=""` to `horizontal` or `vertical`.
   
   * Text with image segmented button
     ```
@@ -92,7 +92,7 @@ dependencies {
                 android:drawableLeft="@drawable/ic_action_star"
                 android:text="Star" />
     ```
-    The icon image will be placed on the left hand side by using above snippet, but it also supports "right", "top", and     "bottom" icons.
+    The icon image will be placed on the left hand side by using above snippet, but it also supports "right", "top", and     "bottom" icon positions.
     <p><img src="./Screenshots/snippet_2.png" width="400"/></p>
   
   * Image-only segmented button
